@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Saranur Turizm | Umre ve Kültür Turları</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Figtree:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f8f4fa;
+        --surface: #fff;
+        --ink: #2a1236;
+        --muted: #645070;
+        --sea: #7a1f9e;
+        --sea-d: #5d1678;
+        --gold: #d81b6a;
+        --line: #e4d6ea;
+        --hero: #3a0f52;
+        --hero-ink: #fbf6fc;
+        --btn-ink: #fff;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        color-scheme: light;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg: #170b1e;
+          --surface: #241230;
+          --ink: #f3eaf6;
+          --muted: #bba5c6;
+          --sea: #c58ae0;
+          --sea-d: #d8a6ee;
+          --gold: #f0518f;
+          --line: #3d2650;
+          --hero: #10061a;
+          --hero-ink: #f3eaf6;
+          --btn-ink: #1a0610;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme='dark'] {
+        --bg: #170b1e;
+        --surface: #241230;
+        --ink: #f3eaf6;
+        --muted: #bba5c6;
+        --sea: #c58ae0;
+        --sea-d: #d8a6ee;
+        --gold: #f0518f;
+        --line: #3d2650;
+        --hero: #10061a;
+        --hero-ink: #f3eaf6;
+        --btn-ink: #1a0610;
+        color-scheme: dark;
+      }
+      html {
+        height: 100%;
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+        scroll-behavior: smooth;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 400 17px/1.6 Figtree, system-ui, sans-serif;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: Newsreader, Georgia, serif;
+        font-weight: 600;
+        line-height: 1.15;
+        margin: 0;
+      }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 0 22px;
+      }
+      :focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      header {
+        position: sticky;
+        top: env(safe-area-inset-top, 0px);
+        z-index: 5;
+        background: #fff;
+        color: #2a1236;
+        border-bottom: 1px solid var(--line);
+      }
+      header .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+      }
+      .logo {
+        display: block;
+        text-decoration: none;
+      }
+      .logo img {
+        height: 52px;
+        width: auto;
+        display: block;
+      }
+      nav {
+        display: flex;
+        gap: 22px;
+        font-size: 15px;
+      }
+      nav a {
+        text-decoration: none;
+        opacity: 0.85;
+      }
+      nav a:hover {
+        opacity: 1;
+      }
+      @media (max-width: 560px) {
+        nav a:nth-child(n + 3) {
+          display: none;
+        }
+      }
+
+      .hero {
+        background: var(--hero);
+        color: var(--hero-ink);
+        padding: 56px 0 0;
+        overflow: hidden;
+      }
+      .hero .wrap {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 32px;
+        align-items: end;
+      }
+      .hero h1 {
+        font-size: clamp(36px, 6vw, 64px);
+        letter-spacing: -0.01em;
+      }
+      .hero p {
+        max-width: 46ch;
+        opacity: 0.88;
+        margin: 18px 0 28px;
+      }
+      .btns {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding-bottom: 56px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 13px 22px;
+        border-radius: 6px;
+        font-weight: 600;
+        text-decoration: none;
+        background: var(--gold);
+        color: var(--btn-ink);
+      }
+      .btn.alt {
+        background: transparent;
+        color: var(--hero-ink);
+        border: 1.5px solid rgba(243, 245, 242, 0.5);
+      }
+      .arch {
+        justify-self: end;
+        width: min(100%, 300px);
+        aspect-ratio: 3/4;
+        border-radius: 999px 999px 0 0;
+        background: radial-gradient(
+            circle at 50% 30%,
+            rgba(240, 81, 143, 0.9) 0 9%,
+            transparent 9.5%
+          ),
+          linear-gradient(180deg, #a443c8, #5d1678 70%);
+        position: relative;
+        border: 6px solid rgba(243, 245, 242, 0.14);
+        border-bottom: 0;
+      }
+      .arch::after {
+        content: '';
+        position: absolute;
+        inset: 18% 14% 0;
+        border-radius: 999px 999px 0 0;
+        border: 2px solid rgba(243, 245, 242, 0.35);
+        border-bottom: 0;
+      }
+      @media (max-width: 720px) {
+        .hero .wrap {
+          grid-template-columns: 1fr;
+        }
+        .arch {
+          display: none;
+        }
+        .btns {
+          padding-bottom: 44px;
+        }
+      }
+
+      section {
+        padding: 64px 0;
+      }
+      h2 {
+        font-size: clamp(28px, 4vw, 38px);
+        margin-bottom: 10px;
+      }
+      .lead {
+        color: var(--muted);
+        max-width: 56ch;
+        margin: 0 0 32px;
+      }
+
+      .tours {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 18px;
+      }
+      .tour {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 24px;
+      }
+      .tour:first-child {
+        border-top: 4px solid var(--gold);
+      }
+      .tour h3 {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+      .tour p {
+        margin: 0 0 14px;
+        color: var(--muted);
+        font-size: 15.5px;
+      }
+      .tour span {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--sea-d);
+      }
+
+      .alt-bg {
+        background: var(--surface);
+        border-block: 1px solid var(--line);
+      }
+      .why {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 28px 36px;
+      }
+      .why h3 {
+        font-size: 20px;
+        margin-bottom: 6px;
+      }
+      .why p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15.5px;
+      }
+
+      ol.steps {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0;
+        max-width: 640px;
+        counter-reset: s;
+      }
+      ol.steps li {
+        counter-increment: s;
+        padding: 0 0 26px 54px;
+        position: relative;
+        border-left: 2px solid var(--line);
+        margin-left: 16px;
+      }
+      ol.steps li:last-child {
+        border-color: transparent;
+        padding-bottom: 0;
+      }
+      ol.steps li::before {
+        content: counter(s);
+        position: absolute;
+        left: -17px;
+        top: -2px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--sea);
+        color: var(--surface);
+        display: grid;
+        place-items: center;
+        font-weight: 600;
+        font-size: 15px;
+      }
+      ol.steps b {
+        display: block;
+        font-family: Newsreader, serif;
+        font-size: 20px;
+      }
+      ol.steps span {
+        color: var(--muted);
+        font-size: 15.5px;
+      }
+
+      .contact {
+        background: var(--hero);
+        color: var(--hero-ink);
+      }
+      .contact h2 {
+        color: var(--hero-ink);
+      }
+      .cgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+        margin-top: 26px;
+      }
+      .cgrid div {
+        border-top: 1px solid rgba(243, 245, 242, 0.25);
+        padding-top: 14px;
+      }
+      .cgrid small {
+        display: block;
+        opacity: 0.7;
+        font-size: 14px;
+      }
+      .cgrid a,
+      .cgrid p {
+        margin: 0;
+        font-weight: 500;
+        overflow-wrap: anywhere;
+      }
+      footer {
+        background: var(--hero);
+        color: var(--hero-ink);
+        opacity: 0.9;
+        font-size: 14px;
+        padding: 18px 0 22px;
+        border-top: 1px solid rgba(243, 245, 242, 0.15);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <a class="logo" href="#top" aria-label="Saranur Turizm ana sayfa"
+          ><img src="logo.jpeg" alt="Saranur Turizm logosu"
+        /></a>
+        <nav>
+          <a href="#turlar">Turlar</a><a href="#neden">Neden biz</a
+          ><a href="#surec">Süreç</a><a href="#iletisim">İletişim</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <div class="hero">
+        <div class="wrap">
+          <div>
+            <h1>Umre ve kültür turlarında yanınızdayız.</h1>
+            <p>
+              Rehberli, planlı ve huzurlu yolculuklar. Vize, uçuş, konaklama ve
+              transferleri biz organize ederiz; siz yalnızca yolculuğa
+              odaklanırsınız.
+            </p>
+            <div class="btns">
+              <a class="btn" href="#iletisim">Bilgi alın</a
+              ><a class="btn alt" href="#turlar">Turları inceleyin</a>
+            </div>
+          </div>
+          <div class="arch" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <section id="turlar">
+        <div class="wrap">
+          <h2>Turlarımız</h2>
+          <p class="lead">
+            Tarihler ve fiyatlar için bizimle iletişime geçin. Programlar sezona
+            göre güncellenir.
+          </p>
+          <div class="tours">
+            <article class="tour">
+              <h3>Umre programları</h3>
+              <p>
+                Mekke ve Medine'de deneyimli din görevlisi rehberlerle,
+                ibadetinize odaklanabileceğiniz düzenli programlar.
+              </p>
+              <span>Ekonomik ve konforlu seçenekler</span>
+            </article>
+            <article class="tour">
+              <h3>Kültür turları</h3>
+              <p>
+                Anadolu'dan Balkanlar'a, tarihi ve manevi mekânları uzman
+                rehberlerle keşfedin.
+              </p>
+              <span>Yurt içi ve yurt dışı</span>
+            </article>
+            <article class="tour">
+              <h3>Özel gruplar</h3>
+              <p>
+                Aile, dernek ve cemaat grupları için size özel tarih, güzergâh
+                ve bütçeye göre program hazırlarız.
+              </p>
+              <span>Talebe göre planlama</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="neden" class="alt-bg">
+        <div class="wrap">
+          <h2>Neden bizi tercih etmelisiniz?</h2>
+          <p class="lead">
+            Bir yolculuğun rahat geçmesi, ayrıntıların önceden düşünülmesine
+            bağlıdır.
+          </p>
+          <div class="why">
+            <div>
+              <h3>Belgeli acente</h3>
+              <p>
+                TÜRSAB belge no: [belge numaranız]. Tüm işlemler yasal güvence
+                altında yürütülür.
+              </p>
+            </div>
+            <div>
+              <h3>Deneyimli rehberler</h3>
+              <p>
+                Yolculuk boyunca grubunuzla birlikte olan, bölgeyi ve ibadet
+                düzenini iyi bilen rehberler.
+              </p>
+            </div>
+            <div>
+              <h3>Açık fiyat</h3>
+              <p>
+                Pakete nelerin dahil olduğunu başta yazılı olarak paylaşırız;
+                sonradan sürpriz ücret çıkmaz.
+              </p>
+            </div>
+            <div>
+              <h3>Dönüşe kadar destek</h3>
+              <p>Kayıttan eve dönüşe kadar bir telefon uzaklığındayız.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="surec">
+        <div class="wrap">
+          <h2>Kayıt nasıl işler?</h2>
+          <p class="lead">Dört adımda yolculuğa hazır olursunuz.</p>
+          <ol class="steps">
+            <li>
+              <b>Bize ulaşın</b
+              ><span
+                >Telefon veya WhatsApp ile tarih ve bütçenizi paylaşın.</span
+              >
+            </li>
+            <li>
+              <b>Programı seçin</b
+              ><span
+                >Size uygun turu birlikte belirler, ayrıntıları yazılı
+                veririz.</span
+              >
+            </li>
+            <li>
+              <b>Evrakları teslim edin</b
+              ><span
+                >Pasaport ve vize işlemlerini sizin adınıza takip ederiz.</span
+              >
+            </li>
+            <li>
+              <b>Yola çıkın</b
+              ><span
+                >Bilgilendirme toplantısı sonrası uçuş günü rehberimizle
+                buluşursunuz.</span
+              >
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="iletisim" class="contact">
+        <div class="wrap">
+          <h2>İletişim</h2>
+          <p class="lead" style="color: inherit; opacity: 0.85">
+            Sorularınızı yanıtlamaktan memnuniyet duyarız.
+          </p>
+          <div class="cgrid">
+            <div>
+              <small>Telefon</small><a href="tel:+905320564627">0532 056 4627</a
+              ><br /><a href="https://wa.me/905320564627">WhatsApp ile yazın</a>
+            </div>
+            <div>
+              <small>E-posta</small
+              ><a href="mailto:saranurturizm@gmail.com"
+                >saranurturizm@gmail.com</a
+              >
+            </div>
+            <div>
+              <small>Adres</small>
+              <p>Kahramanmaraş İl Müftülüğü karşısı</p>
+            </div>
+            <div>
+              <small>Çalışma saatleri</small>
+              <p>Hafta içi 09.00 – 18.00</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap">© 2026 Saranur Turizm. Tüm hakları saklıdır.</div>
+    </footer>
+  </body>
+</html>
